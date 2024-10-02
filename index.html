@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open YouTube Video</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect to WhatsApp and then YouTube</title>
 </head>
 <body>
-  <button onclick="openYouTubeVideo()">Open YouTube Video</button>
-  
-  <script>
-    const videoId = 'aBNkv7oA8Zc';
+  <button onclick="openWhatsApp()">Open WhatsApp</button>
+  
+  <script>
+    const whatsappNumber = '352681569253'; // رقم الواتساب الخاص بالجهة المستقبلة
+    const youtubeVideoId = 'aBNkv7oA8Zc'; // معرف الفيديو على YouTube
 
-    const openYouTubeVideo = () => {
-      const url = `https://www.youtube.com/watch?v=${videoId}`;
-      window.open(url, 'YouTube', 'location=no,fullscreen=yes');
-    }
-  </script>
+    const openWhatsApp = () => {
+      const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+      window.open(whatsappUrl, '_blank');
+      setTimeout(() => { openYouTubeVideo(); }, 50);
+    }
+
+    const openYouTubeVideo = () => {
+      const youtubeUrl = `https://www.youtube.com/watch?v=${youtubeVideoId}`;
+      window.open(youtubeUrl, '_blank');
+    }
+  </script>
 </body>
 </html>
