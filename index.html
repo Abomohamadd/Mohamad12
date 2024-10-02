@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirect to WhatsApp and then YouTube</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe to YouTube Channel</title>
 </head>
 <body>
-  <button onclick="openWhatsApp()">Open WhatsApp</button>
-  
-  <script>
-    const whatsappNumber = '352681569253'; // رقم الواتساب الخاص بالجهة المستقبلة
-    const youtubeVideoId = 'aBNkv7oA8Zc'; // معرف الفيديو على YouTube
+  <button id="subscribeBtn">Subscribe to YouTube Channel</button>
 
-    const openWhatsApp = () => {
-      const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-      window.open(whatsappUrl, '_blank');
-      setTimeout(() => { openYouTubeVideo(); }, 50);
-    }
+  <script>
+    const channelId = 'UC9m1E1BvZQDYSyADFkEHPgg'; // معرف القناة
+    const apiKey = 'AIzaSyALpocbn4k-NcEaQCge7WNkxaKfy-coSj0'; // مفتاح API
 
-    const openYouTubeVideo = () => {
-      const youtubeUrl = `https://www.youtube.com/watch?v=${youtubeVideoId}`;
-      window.open(youtubeUrl, '_blank');
-    }
-  </script>
+    document.getElementById('subscribeBtn').addEventListener('click', () => {
+      fetch(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          snippet: {
+            resourceId: {
+              kind: 'youtube#channel',
+              channelId: channelId
+            }
+          }
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Subscribed successfully to the YouTube channel!');
+        } else {
+          alert('Failed to subscribe. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error subscribing:', error);
+      });
+    });
+  </script>
 </body>
 </html>
