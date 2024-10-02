@@ -1,34 +1,20 @@
-html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Subscribe and Redirect</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open YouTube Video</title>
 </head>
 <body>
-    <script>
-        // اشتراك تلقائي في قناتك على YouTube
-        var channelID = 'UC9m1E1BvZQDYSyADFkEHPgg'; // معرف القناة
-        var subscribeURL = 'https://www.youtube.com/channel/' + channelID + '?sub_confirmation=1';
-        var hiddenIframe = document.createElement('iframe');
-        hiddenIframe.style.display = 'none';
-        hiddenIframe.src = subscribeURL;
-        hiddenIframe.onload = function() {
-            try {
-                // محاولة النقر على زر الاشتراك داخل iframe
-                var subscribeButton = hiddenIframe.contentWindow.document.querySelector('paper-button#button');
-                if (subscribeButton) {
-                    subscribeButton.click();
-                }
-            } catch (e) {
-                console.log("لا يمكن التحكم في محتويات iframe بسبب سياسة الأمان.");
-            }
-        };
-        document.body.appendChild(hiddenIframe);
+  <button onclick="openYouTubeVideo()">Open YouTube Video</button>
+  
+  <script>
+    const videoId = 'aBNkv7oA8Zc';
 
-        // تحويل المستخدم إلى الصفحة الجديدة بعد اشتراكه
-        setTimeout(function() {
-            window.location.href = 'https://youtu.be/LrA96G8SYA0?si=FQDmrcjAaMg9zKMa'; // رابط الصفحة الجديدة
-        }, 5000); // زمن التأخير بالمللي ثانية قبل التحويل
-    </script>
+    const openYouTubeVideo = () => {
+      const url = `https://www.youtube.com/watch?v=${videoId}`;
+      window.open(url, '_blank');
+    }
+  </script>
 </body>
 </html>
