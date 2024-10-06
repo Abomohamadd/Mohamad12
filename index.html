@@ -1,44 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subscribe to YouTube Channel</title>
+    <title>زر الاشتراك في قناة اليوتيوب</title>
+    <style>
+        .subscribe-button {
+            background-color: #FF0000;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-  <button id="subscribeBtn">Subscribe to YouTube Channel</button>
-
-  <script>
-    const channelId = 'UC9m1E1BvZQDYSyADFkEHPgg'; // معرف القناة
-    const apiKey = 'AIzaSyALpocbn4k-NcEaQCge7WNkxaKfy-coSj0'; // مفتاح API
-
-    document.getElementById('subscribeBtn').addEventListener('click', () => {
-      fetch(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          snippet: {
-            resourceId: {
-              kind: 'youtube#channel',
-              channelId: channelId
-            }
-          }
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          alert('Subscribed successfully to the YouTube channel!');
-        } else {
-          alert('Failed to subscribe. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error subscribing:', error);
-      });
-    });
-  </script>
+    <a class="subscribe-button" href="https://www.youtube.com/channel/UC9m1E1BvZQDYSyADFkEHPgg" target="_blank">اشترك في القناة</a>
 </body>
 </html>
