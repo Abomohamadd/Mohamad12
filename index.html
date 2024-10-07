@@ -1,31 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Subscribe Button</title>
-</head>
-
 <body>
-    <!-- Include the Google platform.js script -->
-    <script src="https://apis.google.com/js/platform.js"></script>
+<!-- Include the Google platform.js script -->
+<script src="https://apis.google.com/js/platform.js"></script>
 
-    <!-- YouTube Subscribe button with specified channel ID -->
-    <div class="g-ytsubscribe" data-channelid="UC9m1E1BvZQDYSyADFkEHPgg" data-layout="default" data-theme="dark" data-count="default"
-        data-onsubscriptionchange="handleSubscriptionChange"></div>
-
-    <script>
-        function handleSubscriptionChange(subscription) {
-            if (subscription) {
-                // المشترك أصبح مشتركًا
-                window.location.href = "https://www.youtube.com/channel/UC9m1E1BvZQDYSyADFkEHPgg";
-            } else {
-                // المشترك ألغى الاشتراك
-                console.log("المستخدم ألغى الاشتراك");
-            }
-        }
-    </script>
+<!-- YouTube Subscribe button with specified channel ID -->
+<div class="g-ytsubscribe" data-channelid="UC9m1E1BvZQDYSyADFkEHPgg" data-layout="default" data-theme="dark" data-count="default"></div>
 </body>
-
 </html>
